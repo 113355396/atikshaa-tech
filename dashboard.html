@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ATIKSHAA AI TOOL</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    body { margin:0; font-family:'Segoe UI'; }
+
+    .navbar {
+      background:#0A3D62;
+      color:white;
+      padding:10px;
+      display:flex;
+      justify-content:space-between;
+    }
+
+    .nav-btn {
+      background:#0A80FF;
+      border:none;
+      padding:8px 15px;
+      color:white;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    .container { display:flex; height:90vh; }
+
+    .panel { flex:1; padding:10px; }
+
+    #right { background:#0A3D62; color:white; }
+
+    #center { flex:2; text-align:center; padding:20px; }
+
+    .btn {
+      width:90%;
+      padding:10px;
+      margin:5px;
+      background:#0A80FF;
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    .btn:hover {
+      background:#0056b3;
+      transform:scale(1.05);
+    }
+
+    input, textarea { width:80%; padding:10px; margin:10px; }
+
+    .marquee {
+      background:#0A3D62;
+      color:white;
+      padding:5px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+  <h3>ATIKSHAA TECH SOLUTION</h3>
+  <button class="nav-btn" onclick="location.reload()">Home</button>
+</div>
+
+<div class="container">
+
+<!-- LEFT -->
+<div class="panel">
+  <h3>⚙️ Tools</h3>
+
+  <button class="btn" onclick="showConverter()">Hindi Converter</button>
+  <button class="btn" onclick="showImgToPDF()">Image → PDF</button>
+  <button class="btn" onclick="showPDFMerge()">PDF Merge</button>
+  <button class="btn" onclick="showPDFtoExcel()">PDF → Excel</button>
+  <button class="btn" onclick="showSummarizer()">AI Summarizer</button>
+
+</div>
+
+<!-- CENTER -->
+<div id="center">
+  <h2 id="title">Welcome</h2>
+  <div id="content">Select tool</div>
+</div>
+
+<!-- RIGHT -->
+<div id="right" class="panel">
+  <h3>📄 Services</h3>
+
+  <button class="btn">Leave Application</button>
+  <button class="btn">Notesheet</button>
+  <button class="btn">LPC</button>
+  <button class="btn">DA Arrear</button>
+  <button class="btn">IT Return</button>
+
+</div>
+
+</div>
+
+<div class="marquee">
+<marquee>ATIKSHAA AI TOOLS | School Automation | Future AI 🚀</marquee>
+</div>
+
+<script>
+
+// ================= HINDI =================
+function showConverter(){
+document.getElementById("title").innerText="Hindi Converter";
+document.getElementById("content").innerHTML=`
+<input id="inputText" placeholder="Type here">
+<br>
+<button onclick="startListening()">🎤 Voice</button>
+<button onclick="convertText()">Convert</button>
+<textarea id="output"></textarea>`;
+}
+
+function startListening(){
+const rec=new webkitSpeechRecognition();
+rec.lang="hi-IN";
+rec.onresult=e=>{
+document.getElementById("inputText").value=e.results[0][0].transcript;
+};
+rec.start();
+}
+
+async function convertText(){
+let text=document.getElementById("inputText").value;
+let res=await fetch("https://inputtools.google.com/request?text="+encodeURIComponent(text)+"&itc=hi-t-i0-und&num=1");
+let data=await res.json();
+document.getElementById("output").value=data[1][0][1][0];
+}
+
+// ================= IMAGE TO PDF =================
+function showImgToPDF(){
+document.getElementById("title").innerText="Image to PDF";
+document.getElementById("content").innerHTML=`
+<input type="file" id="imgFile">
+<button onclick="convertImg()">Convert</button>`;
+}
+
+function convertImg(){
+const {jsPDF}=window.jspdf;
+let file=document.getElementById("imgFile").files[0];
+let reader=new FileReader();
+
+reader.onload=function(e){
+let pdf=new jsPDF();
+pdf.addImage(e.target.result,'JPEG',10,10,180,150);
+pdf.save("image.pdf");
+};
+reader.readAsDataURL(file);
+}
+
+// ================= PDF MERGE (BASIC FRONTEND) =================
+function showPDFMerge(){
+document.getElementById("title").innerText="PDF Merge";
+document.getElementById("content").innerHTML=`
+<input type="file" multiple>
+<p>Frontend demo (real merge backend needed)</p>`;
+}
+
+// ================= PDF TO EXCEL =================
+function showPDFtoExcel(){
+document.getElementById("title").innerText="PDF to Excel";
+document.getElementById("content").innerHTML=`
+<p>Use API (CloudConvert / PDF.co)</p>`;
+}
+
+// ================= AI SUMMARIZER =================
+function showSummarizer(){
+document.getElementById("title").innerText="AI Summarizer";
+document.getElementById("content").innerHTML=`
+<textarea id="text" placeholder="Paste text"></textarea>
+<button onclick="summarize()">Summarize</button>
+<textarea id="result"></textarea>`;
+}
+
+function summarize(){
+let text=document.getElementById("text").value;
+document.getElementById("result").value=text.substring(0,150)+"...";
+}
+
+</script>
+
+</body>
+</html>

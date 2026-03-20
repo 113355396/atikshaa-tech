@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #eaf4ff, #ffffff);
+  color: #0A3D62;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 60px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #0A3D62;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #0A80FF;
+}
+
+/* Hero */
+#home {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  background: rgba(255,255,255,0.5);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+#sliderText {
+  font-size: 40px;
+  transition: opacity 0.5s;
+}
+
+.hero-content p {
+  margin: 15px 0;
+}
+
+.btn {
+  padding: 10px 25px;
+  background: linear-gradient(45deg, #0A3D62, #0A80FF);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* Services */
+#services {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.service-box {
+  display: inline-block;
+  width: 260px;
+  margin: 15px;
+  padding: 25px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.4s;
+}
+
+.service-box:hover {
+  transform: translateY(-15px) scale(1.05);
+  background: linear-gradient(45deg, #0A3D62, #0A80FF);
+  color: white;
+}
+
+/* About */
+#about {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+/* Contact */
+#contact {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background: #0A3D62;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
